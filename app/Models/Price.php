@@ -12,12 +12,14 @@ class Price extends Model
 
     protected $fillable = [
         'company_id',
+        'currency_id',
         'cost',
         'quantity'
     ];
 
     protected $casts = [
         'company_id' => 'int',
+        'currency_id' => 'int',
         'cost' => 'float',
         'quantity' => 'integer',
     ];
@@ -25,5 +27,10 @@ class Price extends Model
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function currency(): BelongsTo
+    {
+        return $this->belongsTo(Currency::class);
     }
 }
