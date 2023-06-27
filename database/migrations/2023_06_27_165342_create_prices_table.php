@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('company_id')->unsigned();
             $table->integer('quantity')->unsigned();
             $table->float('cost')->unsigned();
+            $table->unique(['company_id', 'quantity']);
         });
     }
 
