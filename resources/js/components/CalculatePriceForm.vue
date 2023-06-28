@@ -23,7 +23,7 @@
                 ></v-text-field>
 
                 <v-btn color="success" class="me-4 mb-3" @click="submit">
-                    Submit
+                    calculate price
                 </v-btn>
                 <v-alert
                     color="info"
@@ -117,6 +117,7 @@ export default {
         ...mapActions("company", {
             calculateDeliveryPrice: CALCULATE_DELIVERY_PRICE,
         }),
+
         async submit() {
             const valid = await this.v$.$validate();
 
@@ -126,9 +127,8 @@ export default {
                 let formData = {};
                 formData["companyId"] = this.form.company.id;
                 formData["weight"] = this.form.weight;
-
                 this.calculateDeliveryPrice(formData)
-                    .catch((err) => errorSnackbar("Error"))
+                    .catch((err) => this.errorSnackbar("Error"))
                     .finally(() => {
                         this.loading = false;
                     });

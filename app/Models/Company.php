@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,8 +27,13 @@ class Company extends Model
         return $this->hasMany(Price::class);
     }
 
-    public function getPriceForWeight(int $weight, Currency $currency): float
+    public function getPriceForWeight(float $weight, Currency $currency): float
     {
-        return $this->prices()->where('currency_id', $currency->id)->where('quantity', '<=', $weight)->orderBy('quantity', 'desc')->firstOrFail()->cost;
+        return $this->prices()
+            ->where('currency_id', $currency->id)
+            ->where('quantity', '<=', $weight)
+            ->orderBy('quantity', 'desc')
+            ->firstOrFail()
+            ->cost;
     }
 }

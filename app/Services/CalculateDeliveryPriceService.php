@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Http\Requests\CalculateDeliveryPriceRequest;
@@ -18,8 +20,8 @@ class CalculateDeliveryPriceService
             $currency = Currency::getDefaultCurrency();
         }
 
-        $pricePerWeight = Company::findOrFail($data['company_id'])->getPriceForWeight($data['weight'], $currency);
-        $weight = $data['weight'];
+        $weight = (float)$data['weight'];
+        $pricePerWeight = Company::findOrFail($data['company_id'])->getPriceForWeight($weight, $currency);
 
         return [
             'price' =>  $this->calculate($pricePerWeight, $weight),
@@ -29,7 +31,6 @@ class CalculateDeliveryPriceService
 
     public function calculate(float $pricePerWeight, float $weight): Float
     {
-
         return $pricePerWeight * $weight;
     }
 }

@@ -26,6 +26,5 @@ export default {
             snackbar: "snackbar",
         }),
     },
-    components: { CalculatePriceForm },
 };
 </script>
