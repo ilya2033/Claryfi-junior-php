@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "9b55b7cc-56bf-424f-bac8-66d66aadd0d9",
+		"name": "Junior-php",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25385289"
+	},
+	"item": [
+		{
+			"name": "AllCompanies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APP_URL}}/api/company",
+					"host": [
+						"{{APP_URL}}"
+					],
+					"path": [
+						"api",
+						"company"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CalculatePrice",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "weight",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "company_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{APP_URL}}/api/company/price",
+					"host": [
+						"{{APP_URL}}"
+					],
+					"path": [
+						"api",
+						"company",
+						"price"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "APP_URL",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
