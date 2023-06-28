@@ -8,14 +8,6 @@ use App\Models\Currency;
 
 class CalculateDeliveryPriceService
 {
-    public function handle(Company $company, int $weight, Currency $currency = null): mixed
-    {
-        if (!$currency) {
-            $currency = Currency::getDefaultCurrency();
-        }
-        return $company->getPriceForWeight($weight, $currency) * $weight;
-    }
-
     public function handleRequest(CalculateDeliveryPriceRequest $request): mixed
     {
         $data = $request->all();
@@ -25,9 +17,19 @@ class CalculateDeliveryPriceService
         } else {
             $currency = Currency::getDefaultCurrency();
         }
+
+        $pricePerWeight = Company::findOrFail($data['company_id'])->getPriceForWeight($data['weight'], $currency);
+        $weight = $data['weight'];
+
         return [
-            'price' => Company::findOrFail($data['company_id'])->getPriceForWeight($data['weight'], $currency) * $data['weight'],
+            'price' =>  $this->calculate($pricePerWeight, $weight),
             'currency' => $currency->toArray()
         ];
+    }
+
+    public function calculate(float $pricePerWeight, float $weight): Float
+    {
+
+        return $pricePerWeight * $weight;
     }
 }
