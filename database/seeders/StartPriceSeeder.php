@@ -23,7 +23,7 @@ class StartPriceSeeder extends Seeder
         $prices = array(
             array('company_id' => $transCompanyId, 'quantity' => 1, 'cost' => 20, 'currency_id' => $currencyEURId),
             array('company_id' => $transCompanyId, 'quantity' => 10, 'cost' => 100, 'currency_id' => $currencyEURId),
-            array('company_id' => $packGroupId, 'quantity' => 1, 'cost' => 2, 'currency_id' => $currencyEURId),
+            array('company_id' => $packGroupId, 'quantity' => 1, 'cost' => 1, 'currency_id' => $currencyEURId),
         );
 
         DB::table('prices')->insert($prices);
