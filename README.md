@@ -18,3 +18,5 @@ npm run dev
 docker-compose exec app php artisan test
 ```
 
+
+PS: I know that .env files shouldn`t be in git repo, this was left intentionally 
