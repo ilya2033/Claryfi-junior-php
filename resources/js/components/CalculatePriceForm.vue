@@ -11,7 +11,6 @@
                     class="mb-3"
                     return-object
                     required
-                    clearable
                 ></v-select>
                 <v-text-field
                     :error="v$.form.weight.$error"

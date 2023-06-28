@@ -1,11 +1,11 @@
-import deliveryService from "../../../services/company";
+import companyService from "../../../services/company";
 import * as actions from "./types/actions";
 import * as mutations from "./types/mutations";
 
 export default {
     [actions.FETCH_ALL_COMPANIES]: async ({ commit }) => {
         try {
-            const companies = await deliveryService.fetchAllCompanies();
+            const companies = await companyService.fetchAllCompanies();
             commit(mutations.SET_COMPANIES, companies);
             return companies;
         } catch (error) {
@@ -24,8 +24,9 @@ export default {
         if (!companyId || !weight) {
             return;
         }
+
         try {
-            const price = await deliveryService.calculateDeliveyPrice({
+            const price = await companyService.calculateDeliveyPrice({
                 companyId,
                 weight,
             });
