@@ -16,6 +16,8 @@ class Company extends Model
 
     protected $casts = [
         'name' => 'string',
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
     ];
 
     public function prices(): BelongsToMany

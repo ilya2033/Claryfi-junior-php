@@ -22,6 +22,8 @@ class Price extends Model
         'currency_id' => 'int',
         'cost' => 'float',
         'quantity' => 'integer',
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
     ];
 
     public function company(): BelongsTo
