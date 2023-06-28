@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CalculateDeliveryPriceRequest;
 use App\Models\Company;
 use App\Services\CalculateDeliveryPriceService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
@@ -19,7 +19,7 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function calculatePrice(Request $request, CalculateDeliveryPriceService $service): JsonResponse
+    public function calculatePrice(CalculateDeliveryPriceRequest $request, CalculateDeliveryPriceService $service): JsonResponse
     {
         return response()->json([
             'message' => 'Delivery price',

@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
+use App\Http\Requests\CalculateDeliveryPriceRequest;
 use App\Models\Company;
-use Illuminate\Http\Request;
 
 class CalculateDeliveryPriceService
 {
@@ -12,7 +12,7 @@ class CalculateDeliveryPriceService
         return $company->getPriceForWeight($weight) * $weight;
     }
 
-    public function handleRequest(Request $request): Float
+    public function handleRequest(CalculateDeliveryPriceRequest $request): Float
     {
         $data = $request->all();
         return Company::findOrFail($data['company_id'])->getPriceForWeight($data['weight']) * $data['weight'];
