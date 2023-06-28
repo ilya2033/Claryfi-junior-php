@@ -20,6 +20,7 @@ class CalculateDeliveryPriceRequest extends FormRequest
     {
         return [
             'company_id' => ['required', 'exists:' . Company::class . ',id'],
+            'currency_id' => ['nullable', 'exists:' . Currency::class . ',id'],
             'weight' => ['required', 'numeric', 'min:1', 'max:1000'],
         ];
     }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Currency extends Model
 {
     use HasFactory;
+    protected static $defaultCurrency = 'EUR';
 
     protected $fillable = [
         'name',
@@ -20,4 +21,14 @@ class Currency extends Model
         'symbol' => 'string',
         'code' => 'string'
     ];
+
+    protected  $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
+    static public function getDefaultCurrency(): self
+    {
+        return self::where('code', self::$defaultCurrency)->firstOrFail();
+    }
 }

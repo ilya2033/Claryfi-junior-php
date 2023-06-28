@@ -25,8 +25,8 @@ class Company extends Model
         return $this->hasMany(Price::class);
     }
 
-    public function getPriceForWeight(int $weight): float
+    public function getPriceForWeight(int $weight, Currency $currency): float
     {
-        return $this->prices()->where('quantity', '<=', $weight)->orderBy('quantity', 'desc')->firstOrFail()->cost;
+        return $this->prices()->where('currency_id', $currency->id)->where('quantity', '<=', $weight)->orderBy('quantity', 'desc')->firstOrFail()->cost;
     }
 }
