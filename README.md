@@ -5,7 +5,6 @@ docker-compose up -d
 composer install
 npm install
 docker-compose exec app php artisan migrate:refresh --seed
-npm run dev
 ```
 
 ## Run dev
