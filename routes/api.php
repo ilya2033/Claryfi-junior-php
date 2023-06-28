@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('company', CompanyController::class)->only(['index']);
+Route::post('company/price', [CompanyController::class, 'calculatePrice']);

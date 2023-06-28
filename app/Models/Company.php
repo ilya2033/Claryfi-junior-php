@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Company extends Model
 {
@@ -20,8 +20,13 @@ class Company extends Model
         'updated_at' => 'timestamp',
     ];
 
-    public function prices(): BelongsToMany
+    public function prices(): HasMany
     {
-        return $this->belongsToMany(Price::class);
+        return $this->hasMany(Price::class);
+    }
+
+    public function getPriceForWeight(int $weight): float
+    {
+        return $this->prices()->where('quantity', '<=', $weight)->orderBy('quantity', 'desc')->firstOrFail()->cost;
     }
 }
