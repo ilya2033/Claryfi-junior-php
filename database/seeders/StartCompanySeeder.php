@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class StartCompanySeeder extends Seeder
 {
@@ -16,11 +16,7 @@ class StartCompanySeeder extends Seeder
      */
     public function run()
     {
-        $companies = array(
-            array('name' => 'TransCompany'),
-            array('name' => 'PackGroup'),
-        );
-
-        DB::table('companies')->insert($companies);
+        Company::create(['name' => 'TransCompany']);
+        Company::create(['name' => 'PackGroup']);
     }
 }
