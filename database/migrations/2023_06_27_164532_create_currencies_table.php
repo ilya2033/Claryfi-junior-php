@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('code', 10);
             $table->string('symbol', 10);
+            $table->unique(['name', 'code', 'symbol']);
         });
     }
 
