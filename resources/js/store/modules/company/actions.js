@@ -1,4 +1,4 @@
-import deliveryService from "../../../services/delivery";
+import deliveryService from "../../../services/company";
 import * as actions from "./types/actions";
 import * as mutations from "./types/mutations";
 
@@ -17,15 +17,21 @@ export default {
         commit(mutations.SET_COMPANIES, []);
     },
 
-    [actions.CALCULATE_DELIVERY_COST]: async ({ commit }, delivery) => {
-        if (!delivery) {
+    [actions.CALCULATE_DELIVERY_PRICE]: async (
+        { commit },
+        { companyId, weight }
+    ) => {
+        if (!companyId || !weight) {
             return;
         }
         try {
-            await deliveryService.calculateDeliveyCost(delivery);
-            const categories = await categoryService.fetchAllCategories();
-            commit(mutations.SET_CATEGORIES, categories);
+            const price = await deliveryService.calculateDeliveyPrice({
+                companyId,
+                weight,
+            });
+            commit(mutations.SET_DELIVERY_PRICE, price);
         } catch (error) {
+            commit(mutations.SET_DELIVERY_PRICE, null);
             return await Promise.reject(err.response);
         }
     },

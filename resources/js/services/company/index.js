@@ -1,13 +1,17 @@
 import requestService from "../requestService.js";
-const apiEndpoint = "/delivery";
+const apiEndpoint = "/company";
 const deliveryService = {
     async fetchAllCompanies() {
         const response = await requestService.get(apiEndpoint);
         return response?.data?.data;
     },
 
-    async calculateDeliveyCost(delivery) {
-        const response = await requestService.post(apiEndpoint, delivery);
+    async calculateDeliveyPrice({ companyId, weight }) {
+        const response = await requestService.post(apiEndpoint + "/price", {
+            company_id: companyId,
+            weight,
+        });
+
         return response?.data?.data;
     },
 };

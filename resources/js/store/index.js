@@ -1,8 +1,10 @@
 import { createStore } from "vuex";
-import delivery from "./modules/delivery";
+import company from "./modules/company";
+import snackbar from "./modules/snackbar";
 
 export const store = createStore({
     modules: {
-        delivery,
+        company,
+        snackbar,
     },
 });
