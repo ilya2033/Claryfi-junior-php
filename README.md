@@ -1,4 +1,4 @@
-# Claryfi-junior-php
+# Claryfi-junior-php test task #1
 ## Steps to install
 ```
 docker-compose up -d
